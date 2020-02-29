@@ -1,0 +1,63 @@
+package com.imooc.byennsix.domain.enums;
+
+/**
+ * 商品类别的枚举类
+ *
+ * @author MrWang
+ */
+public enum SkuCategoryEnum {
+    /**
+     * 衣服类别
+     */
+    CLOTH(10, "close"),
+
+    /**
+     * 电子产品类
+     */
+    Electric(20, "elec"),
+
+    /**
+     * 运动类
+     */
+    SPORT(30, "sports"),
+
+    /**
+     * 图书类
+     */
+    BOOK(40, "books"),;
+
+
+    /**
+     * 商品的代码
+     */
+    private Integer code;
+
+    /**
+     * 商品的名称
+     */
+    private String name;
+
+    /**
+     * 构造函数
+     */
+    SkuCategoryEnum(Integer code, String name) {
+        this.code = code;
+        this.name = name;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
