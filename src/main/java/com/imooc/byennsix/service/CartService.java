@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @Author: wjy
@@ -100,9 +101,9 @@ public class CartService {
         return result;
     }
 
-    public static void main(String[] args) {
-        List<Sku> allSkus = getCartSkuList();
-        System.out.println(allSkus.size());
+    public static void main(String[] args) throws RuntimeException {
+        Optional<String> notnull = Optional.of("beijing university of posts and telecommunications");
+        notnull.orElseThrow(()-> new RuntimeException(">>"));
     }
 
 
