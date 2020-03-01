@@ -4,12 +4,12 @@ package com.imooc.byennsix.stream;
 import com.alibaba.fastjson.JSON;
 import com.imooc.byennsix.domain.entity.Sku;
 import com.imooc.byennsix.service.CartService;
+import org.assertj.core.api.OptionalAssert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import javax.swing.text.html.Option;
+import java.util.*;
 
 /**
  * @Author: wjy
@@ -92,5 +92,58 @@ public class StreamOperation {
     public void allMatchTest() {
         boolean b = cartSkuList.stream().allMatch(sku -> sku.getSkuName() != null);
         System.out.println(b);
+    }
+
+    @Test
+    public void anyMatch() {
+        boolean b = cartSkuList.stream()
+                .anyMatch(sku -> sku.getTotalPrice() > 1999);
+        System.out.println(b);
+    }
+
+    @Test
+    public void noneMatchTest() {
+        boolean b = cartSkuList.stream()
+                .noneMatch(sku -> sku.getTotalPrice() > 10000);
+        System.out.println(b);
+    }
+
+    @Test
+    public void findFirstTest() {
+        Optional<Sku> first =
+                cartSkuList.stream()
+                        .sorted(Comparator.comparing(sku -> sku.getTotalPrice(), Comparator.reverseOrder()))
+                        .findFirst();
+        System.out.println(JSON.toJSONString(first.get(),true));
+    }
+
+    @Test
+    public void findAnyTest() {
+        Optional<Sku> any = cartSkuList.stream()
+                .sorted(Comparator.comparing(sku -> sku.getTotalPrice(), Comparator.reverseOrder()))
+                .findAny();
+        System.out.println(JSON.toJSONString(any,true));
+
+    }
+
+    @Test
+    public void maxPriceTest() {
+        OptionalDouble max =
+                cartSkuList.stream().
+                        mapToDouble(Sku::getTotalPrice).
+                        max();
+        System.out.println(max.getAsDouble());
+    }
+
+    @Test
+    public void minPriceTest() {
+        OptionalDouble min = cartSkuList.stream().mapToDouble(Sku::getTotalPrice).min();
+        System.out.println(min.getAsDouble());
+    }
+
+    @Test
+    public void countTest() {
+        cartSkuList.stream()
+                .count();
     }
 }
