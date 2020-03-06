@@ -34,7 +34,7 @@ public class OptionalTest {
 
         notnull.ifPresent(System.out::println);
         System.out.println(empty.orElseGet(()->{return "helloword";}));
-        empty.orElseThrow(()->new RuntimeException());
+        // empty.orElseThrow(()->new RuntimeException());
         notnull.orElseThrow(()->new RuntimeException(">???"));
 
 
